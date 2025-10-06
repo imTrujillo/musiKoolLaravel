@@ -80,10 +80,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Añadir un nueva nota musical.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -137,7 +138,7 @@ endpoints:
         name: is_dotted
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -166,13 +167,16 @@ endpoints:
     cleanBodyParameters:
       chord_id: 17
       lyrics: mqeopfuudtdsufvyvddqa
-      is_dotted: true
+      is_dotted: false
       is_silence: true
       rhythmic_figure_id: 17
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -266,10 +270,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Actualizar una nota.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -369,7 +374,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -387,10 +395,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Eliminar una nota musical.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -435,7 +444,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null

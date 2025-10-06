@@ -1,6 +1,9 @@
 # Introduction
 
-
+<img src="/logo.png" /><br>
+Nuestro proyecto de programación "musiKool", es una aplicación educativa donde puedes registrarte como artista y guardar tus canciones. <br>
+Básicamente, es una biblioteca de canciones, artistas y acordes. Está orientada a fines didácticos, en especial, al aprendizaje del piano o la guitarra, mediante diagramas y muestras de sonido. <br>
+Asimismo, se pueden ajustrar parámetros por cada canción, como el tiempo, compás y el tono.
 
 <aside>
     <strong>Base URL</strong>: <code>http://127.0.0.1:8000</code>

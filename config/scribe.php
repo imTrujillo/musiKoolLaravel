@@ -12,7 +12,10 @@ return [
     'title' => config('app.name') . ' API Documentation',
 
     // A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
-    'description' => '',
+    'description' => '<img src="/logo.png" /><br>
+Nuestro proyecto de programación "musiKool", es una aplicación educativa donde puedes registrarte como artista y guardar tus canciones. <br>
+Básicamente, es una biblioteca de canciones, artistas y acordes. Está orientada a fines didácticos, en especial, al aprendizaje del piano o la guitarra, mediante diagramas y muestras de sonido. <br>
+Asimismo, se pueden ajustrar parámetros por cada canción, como el tiempo, compás y el tono.',
 
     // Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
     'intro_text' => <<<INTRO
@@ -103,11 +106,11 @@ return [
     // How is your API authenticated? This information will be used in the displayed docs, generated examples and response calls.
     'auth' => [
         // Set this to true if ANY endpoints in your API use authentication.
-        'enabled' => false,
+        'enabled' => true,
 
         // Set this to true if your API should be authenticated by default. If so, you must also set `enabled` (above) to true.
         // You can then use @unauthenticated or @authenticated on individual endpoints to change their status from the default.
-        'default' => false,
+        'default' => true,
 
         // Where is the auth value meant to be sent in a request?
         'in' => AuthIn::BEARER->value,

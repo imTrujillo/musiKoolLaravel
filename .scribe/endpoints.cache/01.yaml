@@ -18,10 +18,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Guardar una canción.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -99,7 +100,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -118,10 +122,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Actualizar una canción.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -210,7 +215,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -228,10 +236,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Eliminar un canción.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -254,7 +263,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -272,10 +284,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Obtener mis canciones.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -296,7 +309,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null

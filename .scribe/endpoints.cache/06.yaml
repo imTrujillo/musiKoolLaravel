@@ -18,10 +18,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Buscar favoritos de un modelo.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -53,7 +54,10 @@ endpoints:
         description: null
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -71,10 +75,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Marcar un item como favoritos.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -97,7 +102,7 @@ endpoints:
         name: model
         description: ''
         required: true
-        example: Song
+        example: User
         type: string
         enumValues:
           - Song
@@ -117,12 +122,15 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      model: Song
+      model: User
       favoritable_id: 73
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null
@@ -140,10 +148,11 @@ endpoints:
       subgroupDescription: ''
       title: 'Desmarcar un item de favoritos.'
       description: ''
-      authenticated: false
+      authenticated: true
       deprecated: false
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -177,7 +186,10 @@ endpoints:
     fileParameters: []
     responses: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|tutokenfakegeneradoporSanctum'
     controller: null
     method: null
     route: null

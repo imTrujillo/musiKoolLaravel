@@ -51,6 +51,8 @@ class AuthController extends Controller
 
     /**
      * Cerrar sesión.
+     *
+     * @authenticated
      */
     public function destroy(Request $request)
     {
