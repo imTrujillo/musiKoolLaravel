@@ -19,10 +19,10 @@ class ChordController extends Controller
      *
      * @unauthenticated
      */
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
-        $chord_name = $request->input('chord_name');
-        $filter = $request->input('filter', '');
+        $chord_name = $request->query('chord_name');
+        $filter = $request->query('filter', '');
 
         $chords = Chord::when(
             $chord_name,

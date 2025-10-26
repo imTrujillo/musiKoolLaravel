@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Gate;
 class SongController extends Controller
 {
     use CanLoadRelationships;
-    private array $relations = ['compasses', 'artist', 'genre', 'reviews', 'metric', 'scale'];
+    private array $relations = ['compasses.musicalNotes.rhythmicFigure', 'artist', 'genre', 'reviews', 'metric', 'scale'];
     /**
      * Obtener y filtrar canciones.
      *
@@ -29,29 +29,26 @@ class SongController extends Controller
     {
         Gate::authorize('viewAny', Song::class);
 
-        $title = $request->input('title');
-        $filter = $request->input('filter', '');
-        $genre = $request->input('genre', '');
-        $artist = $request->input('artist', '');
+        $title = $request->query('title');
+        $filter = $request->query('filter', '');
+        $genre = $request->query('genre_id', '');
+        $artist = $request->query('artist_id', '');
 
 
-        $songs = Song::when(
-            $title,
-            fn($q, $title) => $q->title($title)
-        );
+        $songs = Song::query()
+            ->when($title, fn($q, $title) => $q->title($title))
+            ->when($genre, fn($q, $genre) => $q->byGenre($genre))
+            ->when($artist, fn($q, $artist) => $q->byArtist($artist));
 
         $songs = match ($filter) {
             'popular' => $songs->popular(),
             'rating' => $songs->highestRated(),
-            'my_songs'     => $request->user()->songs ?? $songs->whereRaw('0 = 1'),
-            'by_genre' => $songs->byGenre($genre),
-            'by_artist' => $songs->byArtist($artist),
             default => $songs
         };
 
         $songs = $this->loadRelationships($songs)->withAvgRating()->withReviewsCount()->latest();
 
-        return SongResource::collection($songs->paginate(5));
+        return SongResource::collection($songs->paginate(10));
     }
 
     /**

@@ -19,7 +19,7 @@ class Compass extends Model
 
     public function musicalNotes(): HasMany
     {
-        return $this->hasMany(MusicalNote::class);
+        return $this->hasMany(MusicalNote::class)->orderBy('order_in_compass', 'asc');
     }
 
     public static function calculateCompassSize($compass)

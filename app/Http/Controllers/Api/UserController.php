@@ -30,8 +30,8 @@ class UserController extends Controller
     {
         Gate::authorize('viewAny', User::class);
 
-        $name = $request->input('name');
-        $filter = $request->input('filter', '');
+        $name = $request->query('name');
+        $filter = $request->query('filter', '');
 
         $users = User::when(
             $name,
@@ -45,7 +45,7 @@ class UserController extends Controller
 
         $users = $this->loadRelationships($users)->withSongsCount();
 
-        return UserResource::collection($users->paginate(5));
+        return UserResource::collection($users->paginate(25));
     }
 
     /**

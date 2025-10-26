@@ -102,7 +102,7 @@ endpoints:
         name: model
         description: ''
         required: true
-        example: User
+        example: Chord
         type: string
         enumValues:
           - Song
@@ -122,7 +122,7 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      model: User
+      model: Chord
       favoritable_id: 73
     fileParameters: []
     responses: []

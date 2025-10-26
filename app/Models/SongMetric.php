@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
 
 class SongMetric extends Model
 {
@@ -58,5 +60,10 @@ class SongMetric extends Model
             'beats' => (int) $beats,
             'noteValue' => (int) $noteValue,
         ];
+    }
+
+    public function scopeSongMetricName(Builder|EloquentBuilder $query, string $song_metric_name): Builder|EloquentBuilder
+    {
+        return $query->where('name', 'LIKE', '%' . $song_metric_name . '%');
     }
 }

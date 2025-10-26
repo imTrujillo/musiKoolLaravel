@@ -35,7 +35,7 @@ class MusicalNote extends Model
 
     public function rhythmicFigure(): BelongsTo
     {
-        return $this->belongsTo(RhythmicFigure::class);
+        return $this->belongsTo(RhythmicFigure::class, 'rhythmic_figure_id', 'id');
     }
 
     public static function calculateDurationForNote($metric, $rhythmic_figure, $is_dotted)

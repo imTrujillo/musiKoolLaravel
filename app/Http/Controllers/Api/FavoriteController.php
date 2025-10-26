@@ -25,17 +25,41 @@ class FavoriteController extends Controller
     public function index(User $user, Request $request)
     {
         Gate::authorize('viewMySongs', $user);
-        $model = $request->input('model', 'Song');
+        $model = $request->query('model', 'Song');
 
         $items = Favorite::myFavorites($model, $request->user());
 
         return match ($model) {
-            "Song" => SongResource::collection($items->withAvgRating()->withReviewsCount()->latest()->paginate(5)),
+            "Song" => SongResource::collection($items->withAvgRating()->withReviewsCount()->with(['artist', 'genre'])->latest()->paginate(5)),
             "Chord" => ChordResource::collection($items->paginate(5)),
             "User" => UserResource::collection($items->withSongsCount()->paginate(5)),
             default => ""
         };
     }
+
+    /**
+     * Mostrar ids de los items favoritos de un usuario según entidad.
+     */
+    public function getIds(User $user, Request $request)
+    {
+        Gate::authorize('viewMySongs', $user);
+        $model = $request->query('model', 'Song');
+
+        $favorites = Favorite::where('model', $model)
+            ->where('user_id', $user->id)
+            ->get(['id', 'favoritable_id']);
+
+        return response()->json([
+            'favorites' => $favorites->map(function ($favorite) {
+                return [
+                    'id' => $favorite->id,
+                    'favoritable_id' => $favorite->favoritable_id,
+                ];
+            }),
+        ]);
+    }
+
+
 
     /**
      * Marcar un item como favoritos.

@@ -46,7 +46,7 @@ class Song extends Model
 
     public function compasses(): HasMany
     {
-        return $this->hasMany(Compass::class);
+        return $this->hasMany(Compass::class)->orderBy('order', 'asc');
     }
 
     public function reviews(): HasMany

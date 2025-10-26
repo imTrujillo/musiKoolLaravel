@@ -138,7 +138,7 @@ endpoints:
         name: is_dotted
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -148,7 +148,7 @@ endpoints:
         name: is_silence
         description: ''
         required: false
-        example: true
+        example: false
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -167,8 +167,8 @@ endpoints:
     cleanBodyParameters:
       chord_id: 17
       lyrics: mqeopfuudtdsufvyvddqa
-      is_dotted: false
-      is_silence: true
+      is_dotted: true
+      is_silence: false
       rhythmic_figure_id: 17
     fileParameters: []
     responses: []
@@ -339,7 +339,7 @@ endpoints:
         name: is_dotted
         description: ''
         required: false
-        example: false
+        example: true
         type: boolean
         enumValues: []
         exampleWasSpecified: false
@@ -368,7 +368,7 @@ endpoints:
     cleanBodyParameters:
       chord_id: 17
       lyrics: mqeopfuudtdsufvyvddqa
-      is_dotted: false
+      is_dotted: true
       is_silence: true
       rhythmic_figure_id: 17
     fileParameters: []

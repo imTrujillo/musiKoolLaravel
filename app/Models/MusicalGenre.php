@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
 
 class MusicalGenre extends Model
 {
@@ -96,5 +98,15 @@ class MusicalGenre extends Model
     public function songs(): HasMany
     {
         return $this->hasMany(Song::class);
+    }
+
+    public function scopeGenreName(Builder|EloquentBuilder $query, string $genre_name): Builder|EloquentBuilder
+    {
+        return $query->where('name', 'LIKE', '%' . $genre_name . '%');
+    }
+
+    public function scopeWithSongsCount(Builder|EloquentBuilder $query)
+    {
+        return $query->withCount('songs');
     }
 }
