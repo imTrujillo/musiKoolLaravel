@@ -37,7 +37,8 @@ Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
         ->only(['store', 'update']);
     Route::apiResource('/songs/{song}/compasses', CompassController::class)
         ->only(['store', 'update', 'destroy']);
-    Route::apiResource('/songs/{song}/compasses/{compass}/musicalNotes', MusicalNoteController::class)->scoped(['musicalNote' => 'id']);;
+    Route::apiResource('/songs/{song}/compasses/{compass}/musicalNotes', MusicalNoteController::class);
+    // ->scoped(['musicalNote' => 'id']);;
 
     Route::apiResource('/users', UserController::class)
         ->only(['store', 'update', 'destroy']);
@@ -51,7 +52,8 @@ Route::apiResource('/songs', SongController::class)
     ->only(['index', 'show']);
 Route::apiResource('/users', UserController::class)
     ->only(['index', 'show']);
-Route::get('/chords', ChordController::class)->name('chords.index');
+Route::get('/chords', [ChordController::class, 'index'])->name('chords.index');
+Route::get('/chords/no-paginate', [ChordController::class, 'noPaginateIndex'])->name('chords.index.noPaginate');
 Route::get('/musical-genres', MusicalGenreController::class)->name('musical-genres.index');
 Route::get('/rhythmic-figures', RhythmicFigureController::class)->name('rhythmic-figures.index');
 Route::get('/song-metrics', SongMetricController::class)->name('song-metrics.index');

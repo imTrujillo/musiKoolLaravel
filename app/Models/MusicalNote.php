@@ -41,11 +41,11 @@ class MusicalNote extends Model
     public static function calculateDurationForNote($metric, $rhythmic_figure, $is_dotted)
     {
         $data = $metric->getMetric();
-        $noteValue = $data->noteValue;
+
 
         $note_duration = $rhythmic_figure->duration ?? 0;
         $note_duration *= $is_dotted ? 1.5 : 1;
-        $note_duration *= (4 / $noteValue);
+        $note_duration *= (4 / $data->noteValue);
 
         return $note_duration;
     }

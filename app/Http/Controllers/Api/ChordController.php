@@ -19,7 +19,7 @@ class ChordController extends Controller
      *
      * @unauthenticated
      */
-    public function __invoke(Request $request)
+    public function index(Request $request)
     {
         $chord_name = $request->query('chord_name');
         $filter = $request->query('filter', '');
@@ -36,5 +36,10 @@ class ChordController extends Controller
         };
 
         return ChordResource::collection($chords->paginate(5));
+    }
+
+    public function noPaginateIndex(Request $request)
+    {
+        return response()->json(Chord::all(), 200);
     }
 }

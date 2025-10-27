@@ -9,7 +9,6 @@ use App\Models\Compass;
 use App\Models\MusicalNote;
 use App\Models\RhythmicFigure;
 use App\Models\Song;
-use Illuminate\Http\Request;
 
 /**
  * @group Notas Musicales
@@ -37,17 +36,19 @@ class MusicalNoteController extends Controller
 
         $rhythmicFigure = RhythmicFigure::findOrFail($data['rhythmic_figure_id']);
         $metric = $song->metric;
-        $duration = MusicalNote::calculateDurationForNote($metric, $rhythmicFigure, $data['is_dotted'] ?? false);
+        $duration = MusicalNote::calculateDurationForNote(
+            $metric,
+            $rhythmicFigure,
+            $data['is_dotted'] ?? false
+        );
 
-        $musicalNote = $compass->musicalNotes()->create(array_merge(
-            $data,
-            [
-                'order_in_compass'    => $compass->musicalNotes()->max('order_in_compass') + 1,
-                'duration_in_compass' => $duration,
-            ]
-        ));
+        $musicalNote = $compass->musicalNotes()->create([
+            ...$data,
+            'order_in_compass'    => ($compass->musicalNotes()->max('order_in_compass') ?? 0) + 1,
+            'duration_in_compass' => $duration,
+        ]);
 
-        return new MusicalNoteResource($musicalNote);
+        return new MusicalNoteResource($musicalNote->load(['chord', 'rhythmicFigure']));
     }
 
     /**
@@ -63,24 +64,24 @@ class MusicalNoteController extends Controller
     /**
      * Actualizar una nota.
      */
-    public function update(Song $song, Compass $compass, $musicalNoteId, MusicalNoteRequest $request)
+    public function update(Song $song, Compass $compass, MusicalNote $musicalNote, MusicalNoteRequest $request)
     {
-        $musicalNote = $compass->musicalNotes()->findOrFail($musicalNoteId);
-
         $data = $request->validated();
 
         $rhythmicFigure = RhythmicFigure::findOrFail($data['rhythmic_figure_id']);
         $metric = $song->metric;
-        $duration = MusicalNote::calculateDurationForNote($metric, $rhythmicFigure, $data['is_dotted'] ?? false);
+        $duration = MusicalNote::calculateDurationForNote(
+            $metric,
+            $rhythmicFigure,
+            $data['is_dotted'] ?? false
+        );
 
-        $musicalNote->update(array_merge(
-            $data,
-            [
-                'duration_in_compass' => $duration,
-            ]
-        ));
+        $musicalNote->update([
+            ...$data,
+            'duration_in_compass' => $duration,
+        ]);
 
-        return new MusicalNoteResource($musicalNote);
+        return new MusicalNoteResource($musicalNote->load(['chord', 'rhythmicFigure']));
     }
 
 

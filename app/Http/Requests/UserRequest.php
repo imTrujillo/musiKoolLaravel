@@ -28,17 +28,16 @@ class UserRequest extends FormRequest
 
         return [
             'name' => [
-                'required',
                 'string',
                 'min:5',
                 'max:20',
-                Rule::unique('users', 'name')->ignore($userId),
+                Rule::requiredIf(!$userId),
             ],
             'email' => [
-                'required',
                 'string',
                 'email',
                 'max:255',
+                Rule::requiredIf(!$userId),
                 Rule::unique('users', 'email')->ignore($userId),
             ],
             'password' => [
@@ -49,11 +48,12 @@ class UserRequest extends FormRequest
                 'regex:/[a-z]/',
                 'regex:/[A-Z]/',
                 'regex:/[0-9]/',
+                Rule::requiredIf(!$userId)
             ],
             'color' => [
-                'required',
                 'string',
                 'regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
+                Rule::requiredIf(!$userId)
             ],
         ];
     }

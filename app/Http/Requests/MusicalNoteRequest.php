@@ -27,7 +27,6 @@ class MusicalNoteRequest extends FormRequest
 
     public function rules(): array
     {
-        $musicalNoteId = $this->route('musicalNote');
 
         return [
             'chord_id' => 'required|integer|exists:chords,id',
@@ -39,9 +38,12 @@ class MusicalNoteRequest extends FormRequest
                 'integer',
                 'exists:rhythmic_figures,id',
                 new CompassMetric(
+                    $this->route('song'),
+                    $this->route('compass'),
+                    $this->route('musicalNote'),
                     $this->input('rhythmic_figure_id'),
                     $this->input('is_dotted'),
-                    $musicalNoteId
+
                 ),
             ],
         ];

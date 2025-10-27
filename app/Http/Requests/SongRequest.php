@@ -34,7 +34,7 @@ class SongRequest extends FormRequest
                 'required',
                 'string',
                 'min:5',
-                'max:20',
+                'max:50',
                 Rule::unique('songs', 'title')->ignore($songId),
             ],
             'bpm' => 'required|integer|min:30|max:280',
